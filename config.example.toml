@@ -1,0 +1,49 @@
+# model-radar configuration. Safe to commit: it holds NO credentials.
+# Secrets come from the environment (or an env_file the adapter points at):
+#   OPENROUTER_API_KEY   required
+#   ZEN_API_KEY          optional, for the OpenCode Zen source
+#   MODELRADAR_DISCORD_WEBHOOK   optional, for alerts
+
+state_dir = "~/.local/state/model-radar"
+
+[adapter]
+# "jsonfile" works out of the box; "hermes" drives hermes-agent profiles.
+name = "jsonfile"
+path = "~/.config/model-radar/models.json"
+# env_file = "~/.hermes/.env"        # optional: read keys from here if unset
+# home = "~/.hermes"                 # hermes adapter only
+# local_base_url = "http://localhost:11434/v1"
+# local_model = "qwen3-coder"
+
+[radar]
+min_ctx = 200000              # below this it cannot replace a large-context primary
+headline_ctx = 500000         # flagged as notable in the alert
+max_probes_per_source = 8     # per run; the rest stay unseen and retry next run
+
+adopt = false                 # OFF by default. Read the gate before enabling.
+adopt_targets = []            # e.g. ["coder", "scout"] - NOT your most sensitive agent
+adopt_min_ctx = 500000
+adopt_confirms = 3            # consecutive clean tool-call probes
+adopt_confirm_gap_s = 8
+adopt_latency_factor = 2.5    # vs the incumbent, measured in the same run
+adopt_latency_abs_max_s = 5.0
+adopt_cooldown_days = 7
+
+[canary]
+targets = []                  # empty = every target the adapter can see
+fails_before_failover = 2     # CONSECUTIVE hard failures. Transients never count.
+credit_floor_usd = 1.50       # below this, revert to local before it hits zero
+credit_warn_usd = 4.00
+
+# Vendor-diverse and cheapest-first. Every rung is probed before adoption.
+paid_ladder = [
+  { model = "qwen/qwen3.7-flash",              context_length = 1000000 },
+  { model = "deepseek/deepseek-v4-flash-0731", context_length = 1310720 },
+  { model = "google/gemini-2.5-flash-lite",    context_length = 1048576 },
+]
+
+[canary.local]
+# The floor under everything: slower and dumber, but it cannot be withdrawn
+# and it cannot run out of money.
+base_url = "http://localhost:11434/v1"
+model = ""
