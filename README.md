@@ -133,3 +133,16 @@ must back up what it overwrites and re-read the result to prove it still parses.
 ## Licence
 
 MIT.
+
+---
+
+## The write-up
+
+What running agents across your own hardware, OpenRouter and a coding
+subscription actually costs, measured on a live estate — including the deadlock
+that hangs a load for nine minutes with nothing in the log:
+
+**[Token Routing →](https://asareanderson.gumroad.com/l/esuwce)** (£18) ·
+[2-page cheat sheet](https://asareanderson.gumroad.com/l/ufdbr) (£4)
+
+More field notes from the same estate: **[dev.to/c1-anderson](https://dev.to/c1-anderson)**
