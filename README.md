@@ -10,6 +10,18 @@ Two deterministic checks for people running LLM agents on hosted model APIs: `mo
 
 Neither tool asks a model for an opinion. They gather facts (prices, balances, probe results) and act on them.
 
+## Contents
+
+- [What it does](#what-it-does)
+- [Screenshots](#screenshots)
+- [Quick start](#quick-start)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [How it works](#how-it-works)
+- [Status, limits and real results](#status-limits-and-real-results)
+- [The write-up](#the-write-up)
+- [Licence and credits](#licence-and-credits)
+
 ## What it does
 
 - **Lists free models** on OpenRouter (zero prompt and completion price, `tools` advertised, context at or above `min_ctx`) and on OpenCode Zen, which publishes no prices.
