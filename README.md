@@ -207,3 +207,5 @@ What running agents across your own hardware, OpenRouter and a coding subscripti
 MIT — see [LICENSE](LICENSE).
 
 Uses the [OpenRouter](https://openrouter.ai) and [OpenCode Zen](https://opencode.ai) APIs. The `hermes` adapter targets [hermes-agent](https://hermes-agent.nousresearch.com) and uses [PyYAML](https://pyyaml.org) (MIT). Model names in examples are whatever the providers listed at the time; availability changes without notice, which is the point of the tool.
+
+If this is useful to you, [buy me a coffee](https://buymeacoffee.com/iamc_tech) ☕
