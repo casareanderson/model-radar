@@ -6,7 +6,7 @@ Two deterministic checks for people running LLM agents on hosted model APIs: `mo
 
 *A real `--dry-run` against OpenRouter on 2026-10-08. Four models passed the tool-call probe, two returned 403, two were rate-limited and left for a later run, and eight waited behind the per-run probe cap.*
 
-![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue) ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-informational)
+![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue) ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-informational) [![Buy Me a Coffee](https://raw.githubusercontent.com/casareanderson/.github/main/badges/bmc-yellow.svg)](https://buymeacoffee.com/iamc_tech)
 
 Neither tool asks a model for an opinion. They gather facts (prices, balances, probe results) and act on them.
 
