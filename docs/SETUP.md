@@ -9,6 +9,11 @@ The blocks marked as tested run on a fresh Ubuntu runner every week in
 [`setup-check`](../.github/workflows/setup-check.yml). CI has no API key, so it proves the install, the config
 and the no-key behaviour. The steps that call OpenRouter need your key and are marked as not tested.
 
+
+![What a passing run looks like on a machine with no API key (excerpt from `setup-check` on 11 October 2026)](setup-run.png)
+
+*What a passing run looks like on a machine with no API key (excerpt from `setup-check` on 11 October 2026).*
+
 ## What you need
 
 - Python 3.11 or newer. It uses `tomllib` from the standard library, so there's nothing to `pip install`.
