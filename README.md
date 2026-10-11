@@ -40,6 +40,8 @@ Neither tool asks a model for an opinion. They gather facts (prices, balances, p
 
 ## Quick start
 
+Full step-by-step setup, tested every week on a fresh machine: [docs/SETUP.md](docs/SETUP.md).
+
 Prerequisites: Python 3.11 or newer (`tomllib`), an OpenRouter API key. No third-party packages unless you use the `hermes` adapter (then `PyYAML`).
 
 ```bash
