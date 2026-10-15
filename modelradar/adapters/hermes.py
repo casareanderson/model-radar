@@ -45,6 +45,10 @@ _NoDupLoader.add_constructor(
     yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_dup)
 
 
+def _load(text: str):
+    return _NoDupLoader(text).get_single_data()
+
+
 class HermesAdapter(Adapter):
     def __init__(self, options: dict):
         self.home = Path(options.get("home", "~/.hermes")).expanduser()
@@ -67,7 +71,7 @@ class HermesAdapter(Adapter):
         p = self.path(target)
         if not p.exists():
             return None
-        cfg = yaml.load(p.read_text(), Loader=_NoDupLoader) or {}
+        cfg = _load(p.read_text()) or {}
         m = cfg.get("model") or {}
         if not m.get("default"):
             return None
@@ -82,7 +86,7 @@ class HermesAdapter(Adapter):
 
     def write(self, target: str, primary: Primary, tag: str) -> None:
         p = self.path(target)
-        cfg = yaml.load(p.read_text(), Loader=_NoDupLoader) or {}
+        cfg = _load(p.read_text()) or {}
         shutil.copy2(p, "%s.bak-%s-%s" % (p, tag, time.strftime("%Y%m%d%H%M")))
 
         cfg["model"] = {"provider": primary.provider, "default": primary.model,
@@ -90,7 +94,7 @@ class HermesAdapter(Adapter):
         if primary.fallbacks:
             cfg["fallback_providers"] = primary.fallbacks
         p.write_text(yaml.safe_dump(cfg, sort_keys=False, default_flow_style=False))
-        yaml.load(p.read_text(), Loader=_NoDupLoader)   # re-read or die
+        _load(p.read_text())   # re-read or die
 
     def local_fallback_entry(self) -> dict:
         """The local-model chain entry, carrying its own base_url. See the
